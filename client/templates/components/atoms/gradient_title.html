@@ -1,0 +1,48 @@
+<h1 class="
+      font-title
+      text-center
+      text-[clamp(2rem,6vw,4.2rem)]
+      font-black
+      leading-[1.1]
+      [word-break:auto-phrase]
+      xl:w-[115%] 
+      xl:text-start
+">
+  {% if pre_text %}
+    <span class="[&::selection]:text-base-content [&::selection]:bg-blue-700/20 brightness-150 contrast-150">
+      {{ pre_text }}
+    </span>
+    <br>
+  {% endif %}
+
+  {% if gradient_text %}
+    <span class="inline-grid">
+      <span aria-hidden="true"
+            data-text="{{ gradient_text }}"
+            class="
+              pointer-events-none col-start-1 row-start-1
+              bg-[linear-gradient(90deg,var(--color-error)_0%,var(--color-secondary)_9%,var(--color-secondary)_42%,var(--color-primary)_50%,var(--color-accent)_100%)]
+              bg-clip-text
+              filter blur-xl brightness-200 contrast-200 saturate-200 drop-shadow-lg
+              [-webkit-text-fill-color:transparent]
+            ">
+        {{ gradient_text }}
+      </span>
+      <span class="
+              col-start-1 row-start-1
+              bg-[linear-gradient(90deg,var(--color-error)_0%,var(--color-secondary)_9%,var(--color-secondary)_42%,var(--color-primary)_50%,var(--color-accent)_100%)]
+              bg-clip-text [-webkit-text-fill-color:transparent]
+              [&::selection]:text-base-content [&::selection]:bg-blue-700/20
+            ">
+        {{ gradient_text }}
+      </span>
+    </span>
+    <br>
+  {% endif %}
+
+  {% if post_text %}
+    <span class="[&::selection]:text-base-content [&::selection]:bg-blue-700/20 brightness-150 contrast-150">
+      {{ post_text }}
+    </span>
+  {% endif %}
+</h1>
