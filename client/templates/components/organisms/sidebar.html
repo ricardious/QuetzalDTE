@@ -1,0 +1,40 @@
+{% load icon_tags %}
+<aside
+  id="sidebar"
+  class="sidebar bg-base-100 text-neutral fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out overflow-y-auto"
+>
+  <div
+    class="flex items-center justify-between p-4 border-b border-neutral-content"
+  >
+    <a href="{% url 'home' %}" class="flex items-center gap-2">
+      {% icon "home" classes="h-6 w-6" %}
+      <span class="text-lg font-semibold">Home</span>
+    </a>
+    <label for="sidebar-toggle" class="cursor-pointer md:hidden">
+      {% icon "x-mark" classes="h-6 w-6" %}
+    </label>
+  </div>
+
+  {# Main navigation items #}
+  <ul class="p-2">
+    {% include 'components/molecules/sidebar_item.html' with url_name='dashboard' text='Dashboard' icon='dashboard-circle' %}
+    {% include 'components/molecules/sidebar_item.html' with url_name='upload_file' text='Cargar DTE' icon='file-add' %}
+    {% include 'components/molecules/sidebar_item.html' with url_name='home' text='Autorizaciones' icon='task-list' %}
+    {% include 'components/molecules/sidebar_item.html' with url_name='home' text='Historial' icon='clock' %}
+    {% include 'components/molecules/sidebar_item.html' with url_name='home' text='Reportes' icon='graph-dot' %}
+  </ul>
+
+  {# Additional options section #}
+  <div class="p-2 border-t border-neutral-content">
+    <div class="text-neutral/50 text-xs uppercase px-2 py-1">
+      Más opciones
+    </div>
+    <ul class="space-y-1">
+      {% include 'components/molecules/sidebar_item.html' with url_name='home' text='Tema' icon='palette' %}
+      {% include 'components/molecules/sidebar_item.html' with url_name='home' text='Idioma' icon='language' %}
+      {% include 'components/molecules/sidebar_item.html' with url_name='home' text='Acerca de' icon='information-circle' %}
+      {% include 'components/molecules/sidebar_item.html' with url='mailto:soporte@tudominio.com' text='Feedback' icon='chat-bubble-typing-oval' %}
+      {% include 'components/molecules/sidebar_item.html' with url_name='home' text='Ayuda' icon='help-question' %}
+    </ul>
+  </div>
+</aside>
