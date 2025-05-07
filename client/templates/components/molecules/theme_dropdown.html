@@ -1,0 +1,30 @@
+{% load icon_tags %}
+<div class="relative inline-block text-left">
+  <input type="checkbox" id="theme-toggle" class="peer hidden" />
+
+  <label
+    for="theme-toggle"
+    class="flex items-center gap-1 text-neutral hover:text-neutral cursor-pointer select-none"
+  >
+    {% icon "palette" "size-6" %}
+    <span class="text-sm">Theme</span>
+    {% icon "arrow-alt-down" "size-4" %}
+  </label>
+
+  <div
+    class="absolute right-0 top-full mt-8 w-56 bg-base-200 rounded-md shadow-lg py-1 hidden peer-checked:block z-50"
+  >
+    <div class="px-4 py-2 text-xs font-semibold border-b border-base-300">
+      Appearance Settings
+    </div>
+    <a href="#" class="block px-4 py-2 text-xs text-neutral hover:bg-base-300">
+      Light
+    </a>
+    <a href="#" class="block px-4 py-2 text-xs text-neutral hover:bg-base-300">
+      Dark
+    </a>
+    <a href="#" class="block px-4 py-2 text-xs text-neutral hover:bg-base-300">
+      System
+    </a>
+  </div>
+</div>
