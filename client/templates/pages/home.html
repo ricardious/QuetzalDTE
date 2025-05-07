@@ -1,0 +1,17 @@
+{% extends 'components/templates/base.html' %}
+{% load static animation_tags %}
+
+{% block title %}Inicio – QuetzalDTE{% endblock %}
+
+{% block content %}
+  <div class="w-full h-[calc(100vh-4rem)] flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mx-auto overflow-hidden">
+    <div class="w-full md:w-1/2 px-4 md:px-16">
+      {% include 'components/atoms/gradient_title.html' with pre_text="Gestiona" gradient_text="Documentos Tributarios" post_text="fácilmente" %}
+    </div> 
+    <div class="w-full md:w-1/2 flex justify-center items-center">
+      <div class="w-full max-w-md">
+        {% anim_player filepath='assets/animations/quetzal.json' width="100%" height="100%" %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
