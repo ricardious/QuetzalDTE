@@ -1,0 +1,11 @@
+{% load static icon_tags %}
+
+<li>
+  <a
+    href="{% if url_name %}{% url url_name %}{% elif url %}{{ url }}{% else %}{% url 'home' %}{% endif %}"
+    class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-content rounded-md w-full {{ extra_classes|default:'' }}"
+  >
+    {% if icon %} {% icon icon classes="size-5" %} {% endif %}
+    <span class="text-sm">{{ text }}</span>
+  </a>
+</li>
