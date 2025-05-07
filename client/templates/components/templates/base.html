@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{% block title %}QuetzalDTE{% endblock %}</title>
+    <link rel="preconnect" href="https://unpkg.com/" crossorigin>
+    <link href="{% static 'dist/global.css' %}" rel="stylesheet" />
+    <link rel="preload" as="fetch" crossorigin="anonymous" type="application/json" href="{% static 'assets/animations/quetzal.json' %}">
+    <link
+      rel="icon"
+      href="{% static 'assets/icons/favicon.svg' %}"
+      type="image/svg+xml"
+    />
+  </head>
+  <body class="bg-base-100 min-h-screen">
+    {% if request.path == "/" %}
+      {% include 'components/atoms/loader.html' %}
+    {% endif %}
+    {% include 'components/atoms/checkbox.html' %} 
+    {% include 'components/atoms/overlay.html' %}
+    {% include 'components/organisms/navbar.html' %} 
+    {% include 'components/organisms/sidebar.html' %}
+    <main class="p-4 w-full transition-all duration-300 peer-checked:ml-64">
+      {% block content %}{% endblock %}
+    </main>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  </body>
+</html>
