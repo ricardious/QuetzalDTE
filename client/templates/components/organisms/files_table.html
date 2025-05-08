@@ -1,0 +1,50 @@
+{% load icon_tags %}
+
+<div class="bg-base-200 rounded-box shadow-sm border border-base-300">
+  <div class="flex items-center justify-between p-4 border-b border-base-300">
+    <h2 class="font-semibold text-neutral">{{ title|default:"Archivos" }}</h2>
+    {% if show_all_url %}
+      <a href="{{ show_all_url }}" class="text-primary text-sm hover:underline">{{ show_all_text|default:"Ver todos" }}</a>
+    {% endif %}
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead class="bg-base-300 text-neutral">
+        <tr>
+          {% for header in table_headers %}
+            <th class="py-3 px-4 text-center">{{ header }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for file in files %}
+          <tr class="{% if not forloop.last %}border-b border-base-300{% endif %} hover:bg-base-300/50">
+            <td class="py-3 px-4">{{ file.name }}</td>
+            <td class="py-3 px-4">{{ file.date }}</td>
+            <td class="py-3 px-4">{{ file.dtes }}</td>
+            <td class="py-3 px-4">
+              <span class="px-2 py-1 rounded-full text-xs bg-{{ file.status_color|default:'success' }}/10 text-{{ file.status_color|default:'success' }}">
+                {{ file.status }}
+              </span>
+            </td>
+            <td class="py-3 px-4">
+              <div class="flex gap-2">
+                {% for action in file.actions %}
+                  <button class="p-1.5 hover:bg-base-300 rounded-full" title="{{ action.title }}">
+                    {% icon action.icon classes="h-4 w-4 text-neutral/70" %}
+                  </button>
+                {% endfor %}
+              </div>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="{{ table_headers|length }}" class="py-6 text-center text-neutral/60">
+              No hay archivos para mostrar
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
