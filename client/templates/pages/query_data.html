@@ -1,0 +1,210 @@
+{% extends 'components/templates/base.html' %}
+{% load icon_tags %}
+
+{% block title %}Consultar Datos - QuetzalDTE{% endblock %}
+
+{% block content %}
+<div class="py-6">
+  <div class="mb-8">
+    <div class="flex items-center gap-2 text-sm text-neutral/60 mb-2">
+      <a href="{% url 'home' %}" class="hover:text-primary">Dashboard</a>
+      <span>{% icon "chevron-right" classes="h-4 w-4" %}</span>
+      <span>Peticiones</span>
+      <span>{% icon "chevron-right" classes="h-4 w-4" %}</span>
+      <span>Consultar Datos</span>
+    </div>
+    <h1 class="text-3xl font-bold text-neutral">Consultar Datos</h1>
+    <p class="text-neutral/70 mt-2">Consulta los datos almacenados en el archivo autorizaciones.xml</p>
+  </div>
+
+  <div class="flex flex-col sm:flex-row gap-4 mb-6">
+    <div class="flex-1 bg-base-200 rounded-box shadow-sm border border-base-300 p-4">
+      <form class="flex flex-col sm:flex-row gap-4">
+        <div class="flex-1">
+          <label for="filtro-nit" class="block text-sm font-medium text-neutral/70 mb-1">NIT</label>
+          <input type="text" id="filtro-nit" name="nit" placeholder="Filtrar por NIT" class="w-full px-3 py-2 bg-base-100 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+        </div>
+        <div class="flex-1">
+          <label for="filtro-fecha" class="block text-sm font-medium text-neutral/70 mb-1">Fecha</label>
+          <input type="date" id="filtro-fecha" name="fecha" class="w-full px-3 py-2 bg-base-100 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+        </div>
+        <div class="flex-1">
+          <label for="filtro-estado" class="block text-sm font-medium text-neutral/70 mb-1">Estado</label>
+          <select id="filtro-estado" name="estado" class="w-full px-3 py-2 bg-base-100 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+            <option value="">Todos</option>
+            <option value="autorizado">Autorizado</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="rechazado">Rechazado</option>
+          </select>
+        </div>
+        <div class="flex items-end">
+          <button type="submit" class="btn bg-primary text-primary-content hover:bg-primary/90 flex items-center gap-2 h-10">
+            {% icon "magnifying-glass" classes="h-5 w-5" %}
+            <span>Buscar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="bg-base-200 rounded-box shadow-sm border border-base-300 mb-6">
+    <div class="flex items-center justify-between p-4 border-b border-base-300">
+      <h2 class="font-semibold text-neutral">Datos de Autorizaciones</h2>
+      <div class="flex gap-2">
+        <button class="btn btn-sm bg-base-100 border border-base-300 hover:bg-base-300 flex items-center gap-1.5">
+          {% icon "arrow-path" classes="h-4 w-4" %}
+          <span>Actualizar</span>
+        </button>
+        <a href="{% url 'home' %}" class="btn btn-sm bg-base-100 border border-base-300 hover:bg-base-300 flex items-center gap-1.5">
+          {% icon "document-text" classes="h-4 w-4" %}
+          <span>PDF</span>
+        </a>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-base-300 text-neutral-content/70">
+          <tr>
+            <th class="py-3 px-4 text-left">NIT</th>
+            <th class="py-3 px-4 text-left">Fecha</th>
+            <th class="py-3 px-4 text-left">Total</th>
+            <th class="py-3 px-4 text-left">IVA</th>
+            <th class="py-3 px-4 text-left">Sin IVA</th>
+            <th class="py-3 px-4 text-left">Estado</th>
+            <th class="py-3 px-4 text-left">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-base-300 hover:bg-base-300/50">
+            <td class="py-3 px-4">6736127-5</td>
+            <td class="py-3 px-4">2025-05-04</td>
+            <td class="py-3 px-4">Q1,250.00</td>
+            <td class="py-3 px-4">Q150.00</td>
+            <td class="py-3 px-4">Q1,100.00</td>
+            <td class="py-3 px-4"><span class="px-2 py-1 rounded-full text-xs bg-success/10 text-success">Autorizado</span></td>
+            <td class="py-3 px-4">
+              <div class="flex gap-2">
+                <button class="p-1.5 hover:bg-base-300 rounded-full" title="Ver detalles">
+                  {% icon "eye" classes="h-4 w-4 text-neutral/70" %}
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="border-b border-base-300 hover:bg-base-300/50">
+            <td class="py-3 px-4">4928361-9</td>
+            <td class="py-3 px-4">2025-05-04</td>
+            <td class="py-3 px-4">Q850.75</td>
+            <td class="py-3 px-4">Q102.09</td>
+            <td class="py-3 px-4">Q748.66</td>
+            <td class="py-3 px-4"><span class="px-2 py-1 rounded-full text-xs bg-success/10 text-success">Autorizado</span></td>
+            <td class="py-3 px-4">
+              <div class="flex gap-2">
+                <button class="p-1.5 hover:bg-base-300 rounded-full" title="Ver detalles">
+                  {% icon "eye" classes="h-4 w-4 text-neutral/70" %}
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="border-b border-base-300 hover:bg-base-300/50">
+            <td class="py-3 px-4">7281934-0</td>
+            <td class="py-3 px-4">2025-05-03</td>
+            <td class="py-3 px-4">Q3,456.25</td>
+            <td class="py-3 px-4">Q414.75</td>
+            <td class="py-3 px-4">Q3,041.50</td>
+            <td class="py-3 px-4"><span class="px-2 py-1 rounded-full text-xs bg-warning/10 text-warning">Pendiente</span></td>
+            <td class="py-3 px-4">
+              <div class="flex gap-2">
+                <button class="p-1.5 hover:bg-base-300 rounded-full" title="Ver detalles">
+                  {% icon "eye" classes="h-4 w-4 text-neutral/70" %}
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="border-b border-base-300 hover:bg-base-300/50">
+            <td class="py-3 px-4">3672819-4</td>
+            <td class="py-3 px-4">2025-05-03</td>
+            <td class="py-3 px-4">Q920.00</td>
+            <td class="py-3 px-4">Q110.40</td>
+            <td class="py-3 px-4">Q809.60</td>
+            <td class="py-3 px-4"><span class="px-2 py-1 rounded-full text-xs bg-error/10 text-error">Rechazado</span></td>
+            <td class="py-3 px-4">
+              <div class="flex gap-2">
+                <button class="p-1.5 hover:bg-base-300 rounded-full" title="Ver detalles">
+                  {% icon "eye" classes="h-4 w-4 text-neutral/70" %}
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-base-300/50">
+            <td class="py-3 px-4">8219376-2</td>
+            <td class="py-3 px-4">2025-05-02</td>
+            <td class="py-3 px-4">Q1,875.50</td>
+            <td class="py-3 px-4">Q225.06</td>
+            <td class="py-3 px-4">Q1,650.44</td>
+            <td class="py-3 px-4"><span class="px-2 py-1 rounded-full text-xs bg-success/10 text-success">Autorizado</span></td>
+            <td class="py-3 px-4">
+              <div class="flex gap-2">
+                <button class="p-1.5 hover:bg-base-300 rounded-full" title="Ver detalles">
+                  {% icon "eye" classes="h-4 w-4 text-neutral/70" %}
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="p-4 border-t border-base-300 flex justify-between items-center">
+      <div class="text-sm text-neutral/60">Mostrando 5 de 124 registros</div>
+      <div class="flex gap-1">
+        <button disabled class="px-3 py-1 rounded-md bg-base-100 border border-base-300 text-neutral/40">Anterior</button>
+        <button class="px-3 py-1 rounded-md bg-primary text-primary-content">1</button>
+        <button class="px-3 py-1 rounded-md bg-base-100 border border-base-300 hover:bg-base-300">2</button>
+        <button class="px-3 py-1 rounded-md bg-base-100 border border-base-300 hover:bg-base-300">3</button>
+        <button class="px-3 py-1 rounded-md bg-base-100 border border-base-300 hover:bg-base-300">...</button>
+        <button class="px-3 py-1 rounded-md bg-base-100 border border-base-300 hover:bg-base-300">25</button>
+        <button class="px-3 py-1 rounded-md bg-base-100 border border-base-300 hover:bg-base-300">Siguiente</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-base-200 rounded-box shadow-sm border border-base-300">
+    <div class="flex items-center justify-between p-4 border-b border-base-300">
+      <h2 class="font-semibold text-neutral">Vista XML</h2>
+      <button class="btn btn-sm bg-base-100 border border-base-300 hover:bg-base-300 flex items-center gap-1.5">
+        {% icon "clipboard-document" classes="h-4 w-4" %}
+        <span>Copiar</span>
+      </button>
+    </div>
+    <div class="p-4">
+      <div class="bg-neutral rounded-box p-4 overflow-x-auto max-h-96">
+        <pre class="text-neutral-content text-sm"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;AUTORIZACIONES&gt;
+  &lt;AUTORIZACION&gt;
+    &lt;NIT&gt;6736127-5&lt;/NIT&gt;
+    &lt;FECHA&gt;2025-05-04&lt;/FECHA&gt;
+    &lt;REFERENCIA&gt;1000000001&lt;/REFERENCIA&gt;
+    &lt;MONTO&gt;
+      &lt;TOTAL&gt;1250.00&lt;/TOTAL&gt;
+      &lt;IVA&gt;150.00&lt;/IVA&gt;
+      &lt;SIN_IVA&gt;1100.00&lt;/SIN_IVA&gt;
+    &lt;/MONTO&gt;
+    &lt;ESTADO&gt;AUTORIZADO&lt;/ESTADO&gt;
+  &lt;/AUTORIZACION&gt;
+  &lt;AUTORIZACION&gt;
+    &lt;NIT&gt;4928361-9&lt;/NIT&gt;
+    &lt;FECHA&gt;2025-05-04&lt;/FECHA&gt;
+    &lt;REFERENCIA&gt;1000000002&lt;/REFERENCIA&gt;
+    &lt;MONTO&gt;
+      &lt;TOTAL&gt;850.75&lt;/TOTAL&gt;
+      &lt;IVA&gt;102.09&lt;/IVA&gt;
+      &lt;SIN_IVA&gt;748.66&lt;/SIN_IVA&gt;
+    &lt;/MONTO&gt;
+    &lt;ESTADO&gt;AUTORIZADO&lt;/ESTADO&gt;
+  &lt;/AUTORIZACION&gt;
+  ...más autorizaciones...
+&lt;/AUTORIZACIONES&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
