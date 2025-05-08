@@ -1,0 +1,6 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+  {% include 'components/molecules/stat_card.html' with title="Total DTE" value=total_dte icon_name="task-list" color="primary" %}
+  {% include 'components/molecules/stat_card.html' with title="Autorizados" value=autorizados icon_name="shield-check" color="success" %}
+  {% include 'components/molecules/stat_card.html' with title="Pendientes" value=pendientes icon_name="clock" color="warning" %}
+  {% include 'components/molecules/stat_card.html' with title="Rechazados" value=rechazados icon_name="x-circle" color="error" %}
+</div>
