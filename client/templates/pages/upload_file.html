@@ -1,0 +1,15 @@
+{% extends 'components/templates/base.html' %} 
+{% load icon_tags breadcrumb_tags helper_tags %} 
+{% block title %}Cargar Archivo - QuetzalDTE{% endblock %} 
+{% block content %}
+<div class="py-6">
+  {# Header #}
+  {% page_header 'home' 'Dashboard' 'upload_file'  'Cargar Archivo' '' 'Detalle' title="Cargar Archivo XML" description="Carga un archivo XML con solicitudes de autorización para procesar" %}
+
+  {# Upload Form #}
+  {% include "components/organisms/upload_form.html" with show_file_info=False show_preview=False filename=file_info.name filesize=file_info.size progress=file_info.progress preview_content=preview_content %}
+
+  {# Recent Uploads #}
+  {% include "components/organisms/files_table.html" with title="Archivos Recientes" show_all_url="#" show_all_text="Ver todos" table_headers="Nombre Archivo,Fecha,DTEs,Estado,Acciones"|split:"," files=recent_files %}
+</div>
+{% endblock %}
