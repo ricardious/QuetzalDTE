@@ -1,0 +1,14 @@
+{% load icon_tags %}
+
+<li class="flex items-center space-x-1">
+  {% if not forloop.last %}
+  <a
+    href="{% if item.url %}{% url item.url %}{% endif %}"
+    class="text-neutral/60 hover:text-primary"
+  >
+    {{ item.text }}
+  </a>
+  {% icon "chevron-right" classes="h-4 w-4 text-neutral/60" %} {% else %}
+  <span class="font-semibold text-neutral">{{ item.text }}</span>
+  {% endif %}
+</li>
