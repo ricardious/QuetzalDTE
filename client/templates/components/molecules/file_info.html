@@ -1,0 +1,20 @@
+{% load icon_tags %} 
+
+<div id="file-info" class="bg-base-100 rounded-box p-4 border border-base-300">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      {% icon "xml-file" classes="h-6 w-6 text-primary" %}
+      <div>
+        <span class="file-name font-medium">{{ filename|default:"null" }}</span>
+        <p class="text-xs text-neutral/60">
+          Tamaño: <span class="file-size">{{ filesize|default:"0 KB" }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="p-1.5 hover:bg-base-300 rounded-full">
+      {% icon "x-mark" classes="h-5 w-5 text-neutral/60" %}
+    </div>
+  </div>
+
+  {% include "components/atoms/file_progress.html" with progress=progress text="Cargando archivo..." %}
+</div>
