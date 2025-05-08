@@ -1,0 +1,14 @@
+{% load icon_tags %}
+
+<a
+  href="{% url url_name %}"
+  class="block p-3 bg-base-100 rounded-box border border-base-300 hover:bg-base-300/50 transition-colors"
+>
+  <div class="flex items-center gap-3">
+    {% icon icon_name classes="h-5 w-5 text-primary" %}
+    <div>
+      <h3 class="font-medium">{{ title }}</h3>
+      <p class="text-sm opacity-70">{{ description }}</p>
+    </div>
+  </div>
+</a>
