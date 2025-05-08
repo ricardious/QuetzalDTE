@@ -1,0 +1,7 @@
+<div class="mb-8">
+  {% include 'components/molecules/breadcrumbs.html' with items=breadcrumb_items %}
+  <h1 class="text-3xl font-bold text-neutral">{{ title }}</h1>
+  {% if description %}
+    <p class="text-neutral/70 mt-2">{{ description }}</p>
+  {% endif %}
+</div>
