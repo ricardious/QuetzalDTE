@@ -1,0 +1,232 @@
+{% extends 'components/templates/base.html' %}
+{% load icon_tags %}
+
+{% block title %}Resumen de IVA - QuetzalDTE{% endblock %}
+
+{% block content %}
+<div class="py-6">
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="flex items-center gap-2 text-sm text-neutral/60 mb-2">
+      <a href="{% url 'home' %}" class="hover:text-primary">Dashboard</a>
+      <span>{% icon "chevron-right" classes="h-4 w-4" %}</span>
+      <span>Peticiones</span>
+      <span>{% icon "chevron-right" classes="h-4 w-4" %}</span>
+      <span>Resumen de IVA</span>
+    </div>
+    <h1 class="text-3xl font-bold text-neutral">Resumen de IVA por fecha y NIT</h1>
+    <p class="text-neutral/70 mt-2">Visualiza gráficamente un resumen de IVA emitido y recibido por NIT en una fecha específica</p>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="flex flex-col sm:flex-row gap-4 mb-6">
+    <div class="flex-1 bg-base-200 rounded-box shadow-sm border border-base-300 p-4">
+      <form class="flex flex-col sm:flex-row gap-4">
+        <div class="flex-1">
+          <label for="filtro-fecha" class="block text-sm font-medium text-neutral/70 mb-1">Fecha</label>
+          <input type="date" id="filtro-fecha" name="fecha" value="2025-05-04" class="w-full px-3 py-2 bg-base-100 border border-base-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+        </div>
+        <div class="flex items-end">
+          <button type="submit" class="btn bg-primary text-primary-content hover:bg-primary/90 flex items-center gap-2 h-10">
+            {% icon "magnifying-glass" classes="h-5 w-5" %}
+            <span>Filtrar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Results Area -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    <!-- Graph -->
+    <div class="lg:col-span-2 bg-base-200 rounded-box shadow-sm border border-base-300 overflow-hidden">
+      <div class="flex items-center justify-between p-4 border-b border-base-300">
+        <h2 class="font-semibold text-neutral">Gráfica de IVA por NIT - 04/05/2025</h2>
+        <div class="flex gap-2">
+          <a href="{% url 'home' %}?tipo=iva&fecha=2025-05-04" class="btn btn-sm bg-base-100 border border-base-300 hover:bg-base-300 flex items-center gap-1.5">
+            {% icon "document-text" classes="h-4 w-4" %}
+            <span>PDF</span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4">
+        <!-- SVG Chart -->
+        <div class="w-full h-96 bg-base-100 rounded-box border border-base-300 p-6">
+          <svg width="100%" height="100%" viewBox="0 0 800 400" class="overflow-visible">
+            <!-- Y Axis -->
+            <line x1="50" y1="50" x2="50" y2="350" stroke="#e5e7eb" stroke-width="1" />
+            <text x="10" y="50" fill="#6b7280" font-size="12">Q500</text>
+            <text x="10" y="150" fill="#6b7280" font-size="12">Q300</text>
+            <text x="10" y="250" fill="#6b7280" font-size="12">Q100</text>
+            <text x="10" y="350" fill="#6b7280" font-size="12">Q0</text>
+            
+            <!-- X Axis -->
+            <line x1="50" y1="350" x2="750" y2="350" stroke="#e5e7eb" stroke-width="1" />
+            
+            <!-- Horizontal Grid Lines -->
+            <line x1="50" y1="50" x2="750" y2="50" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="5,5" />
+            <line x1="50" y1="150" x2="750" y2="150" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="5,5" />
+            <line x1="50" y1="250" x2="750" y2="250" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="5,5" />
+            
+            <!-- Data Groups for first NIT -->
+            <g transform="translate(150, 0)">
+              <!-- NIT Label -->
+              <text x="0" y="370" fill="#374151" font-size="12" text-anchor="middle">6736127-5</text>
+              
+              <!-- IVA Emitido -->
+              <rect x="-30" y="200" width="25" height="150" fill="#7C3AED" rx="2" />
+              <text x="-30" y="190" fill="#7C3AED" font-size="10" text-anchor="middle">Q150</text>
+              
+              <!-- IVA Recibido -->
+              <rect x="5" y="230" width="25" height="120" fill="#EC4899" rx="2" />
+              <text x="5" y="220" fill="#EC4899" font-size="10" text-anchor="middle">Q120</text>
+            </g>
+            
+            <!-- Data Groups for second NIT -->
+            <g transform="translate(300, 0)">
+              <!-- NIT Label -->
+              <text x="0" y="370" fill="#374151" font-size="12" text-anchor="middle">4928361-9</text>
+              
+              <!-- IVA Emitido -->
+              <rect x="-30" y="250" width="25" height="100" fill="#7C3AED" rx="2" />
+              <text x="-30" y="240" fill="#7C3AED" font-size="10" text-anchor="middle">Q100</text>
+              
+              <!-- IVA Recibido -->
+              <rect x="5" y="280" width="25" height="70" fill="#EC4899" rx="2" />
+              <text x="5" y="270" fill="#EC4899" font-size="10" text-anchor="middle">Q70</text>
+            </g>
+            
+            <!-- Data Groups for third NIT -->
+            <g transform="translate(450, 0)">
+              <!-- NIT Label -->
+              <text x="0" y="370" fill="#374151" font-size="12" text-anchor="middle">8219376-2</text>
+              
+              <!-- IVA Emitido -->
+              <rect x="-30" y="130" width="25" height="220" fill="#7C3AED" rx="2" />
+              <text x="-30" y="120" fill="#7C3AED" font-size="10" text-anchor="middle">Q220</text>
+              
+              <!-- IVA Recibido -->
+              <rect x="5" y="180" width="25" height="170" fill="#EC4899" rx="2" />
+              <text x="5" y="170" fill="#EC4899" font-size="10" text-anchor="middle">Q170</text>
+            </g>
+            
+            <!-- Data Groups for fourth NIT -->
+            <g transform="translate(600, 0)">
+              <!-- NIT Label -->
+              <text x="0" y="370" fill="#374151" font-size="12" text-anchor="middle">5492837-1</text>
+              
+              <!-- IVA Emitido -->
+              <rect x="-30" y="160" width="25" height="190" fill="#7C3AED" rx="2" />
+              <text x="-30" y="150" fill="#7C3AED" font-size="10" text-anchor="middle">Q190</text>
+              
+              <!-- IVA Recibido -->
+              <rect x="5" y="260" width="25" height="90" fill="#EC4899" rx="2" />
+              <text x="5" y="250" fill="#EC4899" font-size="10" text-anchor="middle">Q90</text>
+            </g>
+            
+            <!-- Legend -->
+            <rect x="600" y="50" width="15" height="15" fill="#7C3AED" rx="2" />
+            <text x="620" y="63" fill="#374151" font-size="12">IVA Emitido</text>
+            <rect x="600" y="75" width="15" height="15" fill="#EC4899" rx="2" />
+            <text x="620" y="88" fill="#374151" font-size="12">IVA Recibido</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Data Summary -->
+    <div class="bg-base-200 rounded-box shadow-sm border border-base-300">
+      <div class="p-4 border-b border-base-300">
+        <h2 class="font-semibold text-neutral">Resumen de datos</h2>
+      </div>
+      <div class="p-4">
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-sm font-medium text-neutral/70 mb-2">Fecha seleccionada</h3>
+            <p class="font-semibold text-lg">04/05/2025</p>
+          </div>
+          
+          <div>
+            <h3 class="text-sm font-medium text-neutral/70 mb-2">Total NITs</h3>
+            <p class="font-semibold text-lg">4</p>
+          </div>
+          
+          <div>
+            <h3 class="text-sm font-medium text-neutral/70 mb-2">IVA Emitido Total</h3>
+            <p class="font-semibold text-lg text-primary">Q660.00</p>
+          </div>
+          
+          <div>
+            <h3 class="text-sm font-medium text-neutral/70 mb-2">IVA Recibido Total</h3>
+            <p class="font-semibold text-lg text-secondary">Q450.00</p>
+          </div>
+          
+          <div>
+            <h3 class="text-sm font-medium text-neutral/70 mb-2">Balance IVA</h3>
+            <p class="font-semibold text-lg text-success">Q210.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Data Table -->
+  <div class="bg-base-200 rounded-box shadow-sm border border-base-300">
+    <div class="flex items-center justify-between p-4 border-b border-base-300">
+      <h2 class="font-semibold text-neutral">Detalle por NIT - 04/05/2025</h2>
+      <div class="flex gap-2">
+        <button class="btn btn-sm bg-base-100 border border-base-300 hover:bg-base-300 flex items-center gap-1.5">
+          {% icon "arrow-path" classes="h-4 w-4" %}
+          <span>Actualizar</span>
+        </button>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-base-300 text-neutral-content/70">
+          <tr>
+            <th class="py-3 px-4 text-left">NIT</th>
+            <th class="py-3 px-4 text-right">IVA Emitido</th>
+            <th class="py-3 px-4 text-right">IVA Recibido</th>
+            <th class="py-3 px-4 text-right">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-base-300 hover:bg-base-300/50">
+            <td class="py-3 px-4">6736127-5</td>
+            <td class="py-3 px-4 text-right">Q150.00</td>
+            <td class="py-3 px-4 text-right">Q120.00</td>
+            <td class="py-3 px-4 text-right text-success">+Q30.00</td>
+          </tr>
+          <tr class="border-b border-base-300 hover:bg-base-300/50">
+            <td class="py-3 px-4">4928361-9</td>
+            <td class="py-3 px-4 text-right">Q100.00</td>
+            <td class="py-3 px-4 text-right">Q70.00</td>
+            <td class="py-3 px-4 text-right text-success">+Q30.00</td>
+          </tr>
+          <tr class="border-b border-base-300 hover:bg-base-300/50">
+            <td class="py-3 px-4">8219376-2</td>
+            <td class="py-3 px-4 text-right">Q220.00</td>
+            <td class="py-3 px-4 text-right">Q170.00</td>
+            <td class="py-3 px-4 text-right text-success">+Q50.00</td>
+          </tr>
+          <tr class="hover:bg-base-300/50">
+            <td class="py-3 px-4">5492837-1</td>
+            <td class="py-3 px-4 text-right">Q190.00</td>
+            <td class="py-3 px-4 text-right">Q90.00</td>
+            <td class="py-3 px-4 text-right text-success">+Q100.00</td>
+          </tr>
+        </tbody>
+        <tfoot class="bg-base-300">
+          <tr>
+            <th class="py-3 px-4 text-left font-semibold">Total</th>
+            <th class="py-3 px-4 text-right font-semibold">Q660.00</th>
+            <th class="py-3 px-4 text-right font-semibold">Q450.00</th>
+            <th class="py-3 px-4 text-right font-semibold text-success">+Q210.00</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
