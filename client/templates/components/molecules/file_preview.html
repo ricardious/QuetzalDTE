@@ -1,0 +1,35 @@
+{% load icon_tags %}
+
+<div
+  class="bg-base-100 rounded-box overflow-hidden border border-base-300 shadow-sm"
+>
+  <div
+    class="flex items-center justify-between p-3 border-b border-base-300 bg-base-200"
+  >
+    <h3 class="font-medium flex items-center gap-2">
+      {% icon "code-bracket" classes="h-4 w-4 text-primary" %}
+      <span>{{ title|default:"Vista Previa XML" }}</span>
+    </h3>
+    <button
+      type="button"
+      class="text-primary text-sm hover:underline flex items-center gap-1"
+    >
+      <span>{{ action_text|default:"Expandir" }}</span>
+      {% icon "arrows-pointing-out" classes="h-4 w-4" %}
+    </button>
+  </div>
+  <div class="bg-neutral overflow-x-auto max-h-96 relative">
+    <div
+      class="absolute inset-y-0 left-0 w-10 bg-neutral-focus/20 border-r border-neutral-focus/10"
+    ></div>
+    <pre
+      class="text-xs leading-relaxed p-4 pl-12 font-mono text-neutral-content whitespace-pre overflow-auto"
+    ><code>{{ content|default:"&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;" }}</code></pre>
+  </div>
+  <div
+    class="p-2 bg-base-200 border-t border-base-300 text-neutral-content/60 text-xs flex justify-between"
+  >
+    <span>XML</span>
+    <span>{{ file_size|default:"" }}</span>
+  </div>
+</div>
