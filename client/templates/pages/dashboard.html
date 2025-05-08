@@ -1,0 +1,28 @@
+{% extends 'components/templates/base.html' %}
+{% load icon_tags %}
+
+{% block title %}Dashboard - QuetzalDTE{% endblock %}
+
+{% block content %}
+<div class="py-6">
+  {# Header #}
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-neutral">Dashboard</h1>
+    <div class="flex gap-2">
+      <a href="{% url 'upload_file' %}" class="btn bg-primary text-primary-content hover:bg-primary/90 flex items-center gap-2">
+        {% icon "file-add" classes="h-5 w-5" %}
+        <span>Cargar DTE</span>
+      </a>
+    </div>
+  </div>
+  {# Stats Overview #}
+  {% include 'components/organisms/stats_overview.html' with total_dte=0 autorizados=0 pendientes=0 rechazados=0 %}
+  {# Recent Activity #}
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    {# Recent DTEs #}
+    {% include 'components/organisms/recent_documents.html' with recent_documents=documents %}
+    {# Quick Actions #}
+    {% include 'components/organisms/quick_actions.html' %}
+  </div>
+</div>
+{% endblock %}
