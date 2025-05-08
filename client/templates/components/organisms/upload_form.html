@@ -1,0 +1,22 @@
+<div class="bg-base-200 rounded-box shadow-sm border border-base-300 mb-8">
+  <div class="p-6">
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
+      {% csrf_token %}
+
+      {# File Upload Area #}
+      {% include "components/molecules/file_upload_area.html" with accepted_formats=".xml" %}
+
+      {# File Info #}
+      {% if show_preview %} 
+        {% include "components/molecules/file_info.html" with filename=filename filesize=filesize progress=progess title="Vista Previa XML" action_text="Expandir" content=preview_content %} 
+      {% endif %}
+
+      {% if show_preview %} 
+        {# XML Preview #}
+        {% include "components/molecules/file_preview.html" with title="Vista Previa XML" action_text="Expandir" content=preview_content %}
+        {# Action Buttons #}
+        {% include "components/molecules/action_buttons.html" with cancel_url="upload_file" cancel_text="Cancelar" submit_text="Enviar para procesamiento" submit_icon="paper-airplane" %} 
+      {% endif %}
+    </form>
+  </div>
+</div>
