@@ -1,0 +1,7 @@
+<nav aria-label="breadcrumb" class="mb-2 text-sm">
+  <ol class="inline-flex items-center space-x-0.5">
+    {% for item in items %} 
+      {% include 'components/atoms/breadcrumb_item.html' with item=item %} 
+    {% endfor %}
+  </ol>
+</nav>
