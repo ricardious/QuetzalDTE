@@ -1,0 +1,30 @@
+{% load icon_tags %} 
+
+<div class="border-2 border-dashed border-base-300 rounded-box p-8 text-center">
+  <div class="flex flex-col items-center justify-center">
+    {% icon "cloud-arrow-up" classes="h-12 w-12 text-primary mb-4" %}
+    <h3 class="font-medium text-lg mb-2">Arrastra y suelta tu archivo</h3>
+    <p class="text-neutral/60 mb-4">
+      O selecciona un archivo desde tu dispositivo
+    </p>
+
+    <label
+      for="file-upload"
+      class="btn bg-primary text-primary-content hover:bg-primary/90"
+    >
+      Seleccionar archivo
+    </label>
+    <input
+      id="file-upload"
+      name="xml_file"
+      type="file"
+      accept=".xml"
+      class="hidden"
+      required
+    />
+
+    <p class="text-xs text-neutral/60 mt-4">
+      Solo se aceptan archivos {{ accepted_formats|default:".xml" }}.
+    </p>
+  </div>
+</div>
