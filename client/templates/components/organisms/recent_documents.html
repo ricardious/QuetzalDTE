@@ -1,0 +1,30 @@
+<div class="lg:col-span-2 bg-base-200 rounded-box shadow-sm border border-base-300 overflow-hidden">
+  <div class="flex items-center justify-between p-4 border-b border-base-300">
+    <h2 class="font-semibold text-neutral">Documentos Recientes</h2>
+    <a href="{% url 'query_data' %}" class="text-primary text-sm hover:underline">Ver todos</a>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead class="bg-base-300 text-neutral/70">
+        <tr>
+          <th class="py-3 px-4 text-center">NIT</th>
+          <th class="py-3 px-4 text-center">Fecha</th>
+          <th class="py-3 px-4 text-center">Monto</th>
+          <th class="py-3 px-4 text-center">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for doc in recent_documents %}
+        <tr class="border-b border-base-300 hover:bg-base-300/50">
+          <td class="py-3 px-4">{{ doc.nit }}</td>
+          <td class="py-3 px-4">{{ doc.fecha }}</td>
+          <td class="py-3 px-4">{{ doc.monto }}</td>
+          <td class="py-3 px-4">
+            {% include 'components/molecules/status_badge.html' with status=doc.estado color=doc.estado_color %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
