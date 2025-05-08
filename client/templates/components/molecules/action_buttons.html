@@ -1,0 +1,13 @@
+{% load icon_tags %}
+
+<div class="flex justify-end gap-3">
+  <a href="{% url cancel_url %}" class="btn btn-outline">
+    {{ cancel_text|default:"Cancelar" }}
+  </a>
+  <button type="submit" class="btn flex items-center gap-2">
+    {% if submit_icon %}
+        {% icon submit_icon classes="h-5 w-5" %}
+    {% endif %}
+    <span>{{ submit_text }}</span>
+  </button>
+</div>
